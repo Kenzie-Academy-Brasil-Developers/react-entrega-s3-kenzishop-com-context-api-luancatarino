@@ -1,10 +1,9 @@
 import Product from "../Product";
 import { CardList } from "./styles";
-import { useContext } from "react";
-import { CatalogueContext } from "../../providers/products";
+import {useCatalogue} from "../../providers/products"
 
 function ProductsList() {
-    const { catalogue } = useContext(CatalogueContext);
+    const { catalogue } = useCatalogue()
 
     return (
         <CardList>

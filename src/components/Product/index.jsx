@@ -1,11 +1,10 @@
 import { CardProduct, CartProduct } from "./styles";
-import { CartContext } from "../../providers/cart";
-import { useContext } from "react";
+import { useCart } from "../../providers/cart";
 
 function Product({ product, isRemovable = false }) {
-    const { id, name, by, price, img } = product;
+    const { name, by, price, img } = product;
 
-    const { addToCart, removeFromCart } = useContext(CartContext);
+    const { addToCart, removeFromCart } = useCart();
 
     return (
         <>

@@ -1,5 +1,5 @@
 import defaultStore from "../database";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const CatalogueContext = createContext([]);
 
@@ -8,3 +8,5 @@ export const CatalogueProvider = ({ children }) => {
 
     return <CatalogueContext.Provider value={{ catalogue }}>{children}</CatalogueContext.Provider>;
 };
+
+export const useCatalogue = () => useContext(CatalogueContext);

@@ -1,10 +1,9 @@
 import Product from "../Product";
-import { useContext } from "react";
 import { CartList, Container, TotalCart } from "./styles";
-import { CartContext} from "../../providers/cart"
+import { useCart } from "../../providers/cart";
 
 function Cart() {
-    const { cart } = useContext(CartContext);
+    const { cart } = useCart();
 
     const totalCart = cart.reduce((total, current) => {
         return current.price + total;
@@ -12,12 +11,11 @@ function Cart() {
 
     return (
         <Container>
-                <CartList>
-                    {cart.map((product) => (
-                        <Product key={product.id} product={product} isRemovable />
-                    ))}
-                </CartList>
-            
+            <CartList>
+                {cart.map((product) => (
+                    <Product key={product.id} product={product} isRemovable />
+                ))}
+            </CartList>
 
             <TotalCart>
                 <h2>Resumo do Pedido</h2>

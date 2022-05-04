@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import { v4 as uuid } from "uuid";
 
 export const CartContext = createContext([]);
@@ -16,23 +16,17 @@ export const CartProvider = ({ children }) => {
         };
         setCart([...cart, product]);
 
-        const list = JSON.parse(localStorage.getItem("cart")) || [];
-
-        const newList = [...list, product];
-
-        localStorage.setItem("cart", JSON.stringify(newList));
+        localStorage.setItem("cart", JSON.stringify(cart));
     };
 
     const removeFromCart = (product) => {
         const newCart = cart.filter((productOnCart) => productOnCart.id !== product.id);
         setCart(newCart);
 
-        const list = JSON.parse(localStorage.getItem("cart")) || [];
-
-        const newList = list.filter((products) => products.id !== product.id);
-
-        localStorage.setItem("cart", JSON.stringify(newList));
+        localStorage.setItem("cart", JSON.stringify(newCart));
     };
 
     return <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>{children}</CartContext.Provider>;
 };
+
+export const useCart = () => useContext(CartContext)
